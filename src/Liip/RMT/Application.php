@@ -25,8 +25,14 @@ use Symfony\Component\Yaml\Yaml;
 
 class Application extends BaseApplication
 {
-    // This ugly hack is mandatory to allow command to access application at configure() time
-    // See Liip\Command\BaseCommand::getApplication()
+    /**
+     * Saves the application instance.
+     *
+     * This ugly hack is mandatory to allow command to access application at configure() time
+     * See Liip\Command\BaseCommand::getApplication()
+     *
+     * @var Application
+     */
     public static $instance;
 
     /**
