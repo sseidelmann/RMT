@@ -16,6 +16,18 @@ namespace Liip\RMT\Config;
  */
 class Handler
 {
+    /**
+     * Saves the raw configuration.
+     * @var array
+     */
+    protected $rawConfig = [];
+
+    /**
+     * Saves the project root.
+     * @var string
+     */
+    protected $projectRoot;
+
     public function __construct($rawConfig = null, $projectRoot = null)
     {
         $this->rawConfig = $rawConfig;
@@ -204,7 +216,6 @@ class Handler
             'version-generator' => 'Liip\RMT\Version\Generator',
             'version-persister' => 'Liip\RMT\Version\Persister',
         );
-        $nameSpace = $namespacesByType[$classType];
 
         // Guess the class name
         // Convert from xxx-yyy-zzz to XxxYyyZzz and append suffix

@@ -184,8 +184,6 @@ class InitCommand extends BaseCommand
             $config['vcs'] = $vcs;
         }
 
-        $generator = $this->informationCollector->getValueFor('generator');
-
         $config['version-persister'] = $this->informationCollector->getValueFor('persister');
 
         return $config;

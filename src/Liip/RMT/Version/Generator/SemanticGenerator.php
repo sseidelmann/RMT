@@ -54,7 +54,7 @@ class SemanticGenerator implements GeneratorInterface
         $validTypes = array('patch', 'minor', 'major');
         if (!in_array($type, $validTypes)) {
             throw new \InvalidArgumentException(
-                'The option [type] must be one of: {'.implode($validTypes, ', ')."}, \"$type\" given"
+                'The option [type] must be one of: {'.implode(', ', $validTypes)."}, \"$type\" given"
             );
         }
 
@@ -62,7 +62,7 @@ class SemanticGenerator implements GeneratorInterface
             throw new \Exception('Current version format is invalid (' . $currentVersion . '). It should be major.minor.patch');
         }
 
-        $matches = null;
+        $matches = [];
         preg_match('$(?:(\d+\.\d+\.\d+)(?:(-)([a-zA-Z]+)(\d+)?)?)$', $currentVersion, $matches);
         // if last version is with label
         if (count($matches) > 3) {
@@ -70,6 +70,7 @@ class SemanticGenerator implements GeneratorInterface
             $patch = substr($patch, 0, strpos($patch, '-'));
 
             if ($label != 'none') {
+                $labelVersion = '';
                 // increment label
                 if (array_key_exists(3, $matches)) {
                     $oldLabel = $matches[3];
@@ -84,10 +85,10 @@ class SemanticGenerator implements GeneratorInterface
                     }
                 }
 
-                return implode(array($major, $minor, $patch), '.').'-'.$label.$labelVersion;
+                return implode('.', array($major, $minor, $patch)).'-'.$label.$labelVersion;
             }
 
-            return implode(array($major, $minor, $patch), '.');
+            return implode('.', array($major, $minor, $patch));
         }
 
         list($major, $minor, $patch) = explode('.', $currentVersion);

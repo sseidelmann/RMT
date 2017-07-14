@@ -13,6 +13,18 @@ namespace Liip\RMT\Version\Persister;
 
 class TagValidator
 {
+    /**
+     * Saves the regex
+     * @var string
+     */
+    protected $regex;
+
+    /**
+     * Saves the tag prefix.
+     * @var string
+     */
+    protected $tagPrefix;
+
     public function __construct($regex, $tagPrefix = '')
     {
         $this->regex = $regex;

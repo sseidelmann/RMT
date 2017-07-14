@@ -34,14 +34,13 @@ class CurrentCommand extends BaseCommand
     {
         $this->loadContext();
         $version = Context::get('version-persister')->getCurrentVersion();
-        if ($input->getOption('vcs-tag')) {
-            $vcsTag = Context::get('version-persister')->getCurrentVersionTag();
-        }
+        $vcsTag = $input->getOption('vcs-tag') ? Context::get('version-persister')->getCurrentVersionTag() : $version;
+
         if ($input->getOption('raw') == true) {
-            $output->writeln($input->getOption('vcs-tag') ? $vcsTag : $version);
+            $output->writeln($vcsTag);
         } else {
             $msg = "Current release is: <green>$version</green>";
-            if ($input->getOption('vcs-tag')) {
+            if ($version != $vcsTag) {
                 $msg .= " (VCS tag: <green>$vcsTag</green>)";
             }
             $output->writeln($msg);

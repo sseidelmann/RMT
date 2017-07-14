@@ -149,7 +149,7 @@ class InformationCollector
 
     public function setValueFor($requestName, $value)
     {
-        return $this->getRequest($requestName)->setValue($value);
+        $this->getRequest($requestName)->setValue($value);
     }
 
     public function hasValueFor($requestName)
