@@ -16,6 +16,8 @@ build:
     dependencies:
         before:
             - 'sudo apt-get install -y mercurial'
+            - 'git config --global user.email "test@test.com"'
+            - 'git config --global user.name "John Doe"'
 
 tools:
     external_code_coverage:

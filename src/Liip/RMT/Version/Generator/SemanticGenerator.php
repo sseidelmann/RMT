@@ -85,7 +85,7 @@ class SemanticGenerator implements GeneratorInterface
                     }
                 }
 
-                return implode('.', array($major, $minor, $patch)).'-'.$label.$labelVersion;
+                return implode('.', array($major, $minor, $patch)).'-'.$label.($labelVersion !== false ? $labelVersion : '');
             }
 
             return implode('.', array($major, $minor, $patch));
@@ -109,10 +109,10 @@ class SemanticGenerator implements GeneratorInterface
 
         // new label
         if ($label != 'none') {
-            return implode(array($major, $minor, $patch), '.').'-'.$label;
+            return implode('.', array($major, $minor, $patch)).'-'.$label;
         }
 
-        return implode(array($major, $minor, $patch), '.');
+        return implode('.', array($major, $minor, $patch));
     }
 
     public function getInformationRequests()
