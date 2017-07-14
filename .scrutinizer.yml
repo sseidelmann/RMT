@@ -12,6 +12,12 @@ build:
             - 'git config --global user.email "test@test.com"'
             - 'git config --global user.name "John Doe"'
 
+    environment:
+      php:
+        version: 5.6.3
+        ini:
+          'phar.readonly':'0'
+
 #tools:
 #    external_code_coverage:
 #        enabled: false
